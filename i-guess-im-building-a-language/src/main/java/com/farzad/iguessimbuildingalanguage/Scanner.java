@@ -39,6 +39,7 @@ class Scanner {
             case '+' -> addToken(TokenType.PLUS);
             case ';' -> addToken(TokenType.SEMICOLON);
             case '*' -> addToken(TokenType.STAR);
+            default -> Jigimbal.error(line, "Unexpected character.");
         }
     }
 

@@ -13,7 +13,7 @@ public class Jigimbal {
 
     public static void main(String[] args) throws IOException {
         if (args.length > 1  ) {
-            System.out.println("Usage: jlox [script]");
+            System.out.println("Usage: jigimbal [script]");
             System.exit(64);
         } else if (args.length == 1) {
             runFile(args[0]);
@@ -57,7 +57,7 @@ public class Jigimbal {
     }
 
     private static void report(int line, String where, String message) {
-        System.err.println("[line " + line + "] Error" + where + ": " + message);
+        System.err.println("[line " + line + "] Error " + where + ": " + message);
         hadError = true;
     }
 }
