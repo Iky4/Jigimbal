@@ -39,8 +39,33 @@ class Scanner {
             case '+' -> addToken(TokenType.PLUS);
             case ';' -> addToken(TokenType.SEMICOLON);
             case '*' -> addToken(TokenType.STAR);
+            case '!' -> addToken(match('=') ? TokenType.BANG_EQUAL:TokenType.BANG);
+            case '=' -> addToken(match('=') ? TokenType.EQUAL_EQUAL:TokenType.EQUAL);
+            case '<' -> addToken(match('=') ? TokenType.LESS_EQUAL:TokenType.LESS);
+            case '>' -> addToken(match('=') ? TokenType.GREATER_EQUAL:TokenType.GREATER);
+            case '/' -> {
+                if (match('/')) {
+                    // A comment goes until the end of the line.
+                    while (peek() != '\n' && !isAtEnd()) advance(); 
+                } else {
+                    addToken(TokenType.SLASH);
+                }
+            }
             default -> Jigimbal.error(line, "Unexpected character.");
         }
+    }
+
+    private boolean match(char expected) {
+        if (isAtEnd()) return false;
+        if (source.charAt(current) != expected) return false;
+
+        current++;
+        return true;
+    }
+
+    private char peek() {
+        if (isAtEnd()) return '\0';
+        return source.charAt(current);
     }
 
     private boolean isAtEnd() {
