@@ -51,6 +51,10 @@ class Scanner {
                     addToken(TokenType.SLASH);
                 }
             }
+            case ' ' -> {}
+            case '\r' -> {}
+            case '\t' -> {}
+            case '\n' -> line++;
             default -> Jigimbal.error(line, "Unexpected character.");
         }
     }
