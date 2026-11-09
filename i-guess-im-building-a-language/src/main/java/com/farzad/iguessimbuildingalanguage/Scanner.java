@@ -55,8 +55,27 @@ class Scanner {
             case '\r' -> {}
             case '\t' -> {}
             case '\n' -> line++;
+            case '"' -> string();
             default -> Jigimbal.error(line, "Unexpected character.");
         }
+    }
+
+    private void string() {
+        while (peek() != '"' && !isAtEnd()) {
+            if (peek() == '\n') line++;
+            advance();
+        }
+
+        if (isAtEnd()) {
+            Jigimbal.error(line, "Unterminated string.");
+        }
+
+        // The closing ".
+        advance();
+
+        // Trim the surrounding quotes.
+        String value = source.substring(start + 1, current - 1);
+        addToken(TokenType.STRING, value);
     }
 
     private boolean match(char expected) {
