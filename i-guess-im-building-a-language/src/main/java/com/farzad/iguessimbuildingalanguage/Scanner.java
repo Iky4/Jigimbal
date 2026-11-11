@@ -88,6 +88,7 @@ class Scanner {
 
         if (isAtEnd()) {
             Jigimbal.error(line, "Unterminated string.");
+            return;
         }
 
         // The closing ".
