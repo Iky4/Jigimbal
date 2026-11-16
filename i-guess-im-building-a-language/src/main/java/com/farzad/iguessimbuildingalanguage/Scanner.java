@@ -1,9 +1,8 @@
 package com.farzad.iguessimbuildingalanguage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import static java.util.Map.entry;
 import java.util.Map;
-import java.util.Locale.IsoCountryCode;
 import java.util.List;
 
 class Scanner {
@@ -12,27 +11,23 @@ class Scanner {
     private int start = 0;
     private int current = 0;
     private int line = 1;
-    private static final Map<String, TokenType> keywords;
-
-    static {
-        keywords = new HashMap<>();
-        keywords.put("and", TokenType.AND);
-        keywords.put("class", TokenType.CLASS);
-        keywords.put("else", TokenType.ELSE);
-        keywords.put("false", TokenType.FALSE);
-        keywords.put("for", TokenType.FOR);
-        keywords.put("fun", TokenType.FUN);
-        keywords.put("if", TokenType.IF);
-        keywords.put("nil", TokenType.NIL);
-        keywords.put("or", TokenType.OR);
-        keywords.put("print", TokenType.PRINT);
-        keywords.put("return", TokenType.RETURN);
-        keywords.put("super", TokenType.SUPER);
-        keywords.put("this", TokenType.THIS);
-        keywords.put("true", TokenType.TRUE);
-        keywords.put("var", TokenType.VAR);
-        keywords.put("while", TokenType.WHILE);
-    }
+    private static final Map<String, TokenType> keywords = Map.ofEntries(
+        entry("and", TokenType.AND),
+        entry("class", TokenType.CLASS),
+        entry("else", TokenType.ELSE),
+        entry("false", TokenType.FALSE),
+        entry("for", TokenType.FOR),
+        entry("fun", TokenType.FUN),
+        entry("if", TokenType.IF),
+        entry("nil", TokenType.NIL),
+        entry("or", TokenType.OR),
+        entry("print", TokenType.PRINT),
+        entry("return", TokenType.RETURN),
+        entry("super", TokenType.SUPER),
+        entry("this", TokenType.THIS),
+        entry("true", TokenType.TRUE),
+        entry("var", TokenType.VAR),
+        entry("while", TokenType.WHILE));
 
     Scanner(String source) {
         this.source = source;
